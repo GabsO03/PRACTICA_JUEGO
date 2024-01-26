@@ -107,6 +107,15 @@ public class Heroe {
         return true;
     }
     public void restaVida (int ataque) {
-        vida -= ataque;
+        vida -= (ataque-defensa);
     }
+
+    //Acciones
+    public void atacar (Heroe computer) {
+        computer.setVida(computer.getVida()-ataque);
+    }
+    public void recuperarVida () {
+        this.vida += complemento.getVida();
+    }
+
 }
