@@ -38,7 +38,7 @@ public class Heroe {
         this.apariencia = apariencia;
     }
 
-    //Getters
+    //GETTERS
     public String getNombre() {
         return nombre;
     }
@@ -61,7 +61,7 @@ public class Heroe {
         return complemento;
     }
 
-    //Setters
+    //SETTERS
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -84,7 +84,7 @@ public class Heroe {
         this.complemento = complemento;
     }
 
-    //Otros
+    //OTROS
     public boolean estaVivo () {
         return vida > 0;
     }
@@ -110,7 +110,7 @@ public class Heroe {
         vida -= (ataque-defensa);
     }
 
-    //Acciones
+    //ACCIONES
     public void atacar (Heroe computer) {
         computer.setVida(computer.getVida()-ataque);
     }
