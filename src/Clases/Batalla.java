@@ -49,7 +49,7 @@ public class Batalla {
     }
     public void setTurno(int turno) {
         this.turno = turno;
-    }      
+    }  
 
     //OTROS
 
