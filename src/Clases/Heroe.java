@@ -89,33 +89,45 @@ public class Heroe {
         return vida > 0;
     }
     public int devuelveAtaqueTotal () {
-        return 1;
+        return ataque + complemento.getAtaque();
     }
     public int devuelveVidaTotal () {
-        return 2;
+        return vida + complemento.getVida();
     }
     public int devuelveDefensaTotal () {
-        return 3;
+        return defensa + complemento.getDefensa();
     }
     public int devuelveVelocidadTotal () {
-        return 4;
+        return velocidad + complemento.getVelocidad();
     }
     public void equiparComplemento (Complemento complemento) {
-
+        if (complemento != null ) System.out.println("Ya no puedes equipar más complementos");
+        else {
+            this.complemento = complemento;
+            ataque = devuelveAtaqueTotal();
+            defensa = devuelveDefensaTotal();
+            velocidad = devuelveVelocidadTotal();
+        }
     }
     public boolean desequiparComplemento () {
-        return true;
+        if (complemento != null ) {
+            ataque -= complemento.getAtaque();
+            defensa -= complemento.getDefensa();
+            velocidad -= complemento.getVelocidad();
+            return true;
+        }
+        return false;
     }
     public void restaVida (int ataque) {
         vida -= (ataque-defensa);
     }
 
     //ACCIONES
-    public void atacar (Heroe computer) {
-        computer.setVida(computer.getVida()-ataque);
+    public void atacaA (Heroe recibe) {
+        recibe.restaVida(ataque);
     }
     public void recuperarVida () {
-        this.vida += complemento.getVida();
+        this.vida = devuelveVidaTotal();
     }
 
 }
