@@ -128,6 +128,6 @@ public class Heroe {
 
     @Override
     public String toString() {
-        return "Nombre:"+nombre+"\nAtaque:"+ataque+"\nVelocidad:"+velocidad+"\nDefensa:"+defensa+"\nVida:"+vida+"\nApariencia:"+apariencia+"\nComplemento:"+complemento.getNombre()+"\n";
+        return "Nombre:"+nombre+"\nAtaque:"+ataque+"\nVelocidad:"+velocidad+"\nDefensa:"+defensa+"\nVida:"+vida+"\nApariencia:"+apariencia;
     }
 }
