@@ -53,4 +53,9 @@ public class Complemento {
     public void setVida(int vida) {
         this.vida = vida;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + "\nAtaque: " + ataque + "\nVelocidad: " + velocidad + "\nDefensa:" + defensa +  "\nVida: " + vida;
+    }
 }

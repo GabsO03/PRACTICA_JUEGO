@@ -10,6 +10,9 @@ public class Main {
     public static int numReader () {
         return Integer.parseInt(reader());
     }
+    public static Heroe heroeEscogido (int aleatorio, Heroe[] heroes) {
+        return heroes[aleatorio];
+    }
     public static void main(String[] args) {
         // Array 5 heroes y 5 complementos
         Heroe[] heroes = new Heroe[5];
@@ -36,7 +39,81 @@ public class Main {
 
 
         //1.
-        System.out.println("Bienvenido, introduzca los datos de su personaje");
-        String nombre = reader();
+        Heroe player = new Heroe("Predeterminado", 0, 0, 0, "Predeterminado");
+        System.out.println("Bienvenido, escoja una opción:");
+        System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.\n4. Salir");
+        int eleccionPersonaje = numReader();
+        switch (eleccionPersonaje) {
+            case 1 -> {
+                System.out.println("¿Qué personaje desea?");
+                //Lista de personajes
+                player = new Heroe(heroeEscogido(numReader(), heroes));
+            }
+            case 2 -> {
+                int aleatorio = (int) (Math.random()*5+1);
+                player = new Heroe(heroeEscogido(aleatorio, heroes));
+                System.out.println("¡Felicidades! Te tocó " + player.getNombre());
+            }
+            case 3 -> {
+                System.out.println("Tus habilidades serán asignadas de manera aleatoria.");
+                System.out.println("Mi nombre es:");
+                String nombre = reader();
+                System.out.println("Mi nivel de ataque es:");
+                int ataque = (int) (Math.random()*40+1);
+                System.out.println(ataque);
+                System.out.println("Mi nivel de velocidad es:");
+                int velocidad = (int) (Math.random()*40+1);
+                System.out.println(velocidad);
+                System.out.println("Mi nivel de defensa es:");
+                int defensa = (int) (Math.random()*40+1);
+                System.out.println(defensa);
+                System.out.println("Mi apariencia es:");
+                String apariencia = reader();
+                player = new Heroe(nombre, ataque, velocidad, defensa, apariencia);
+            }
+        }
+
+        //2.
+        System.out.println("Excelente elección, ¿Está listo para la batalla? o ¿Deseas hacer algo antes?\n1. Iniciar una batalla\n2. Modificar personaje\n3. Salir");
+        int opcion = numReader();
+        switch (opcion) {
+            case 1 -> {} //3. Inicia batalla
+            case 2 -> {
+                System.out.println("¿Qué deseas modificar?\n1. Nombre:\n2. Apariencia\n3. Complemento");
+                opcion = numReader();
+                switch (opcion) {
+                    case 1 -> {
+                        System.out.println("Introduce el nombre:");
+                        player.setNombre(reader());
+                    }
+                    case 2 -> {
+                        System.out.println("Introduce la apariencia:");
+                        player.setApariencia(reader());
+                    }
+                    case 3 -> {
+                        System.out.println("1. Equipar.\n2. Desequipar.");
+                        opcion = numReader();
+                        switch (opcion) {
+                            case 1 -> {
+                                if (player.getComplemento() == null) {
+                                    System.out.println("Elige tu complemento:");
+                                    //Lista de complementos
+                                    opcion = numReader();
+                                    player.equiparComplemento(complementos[opcion]);
+                                }
+                                else System.out.println("No puedes equipar más complementos");
+                            }
+                            case 2 -> {
+                                boolean tiene = player.desequiparComplemento();
+                                if (!tiene) System.out.println("No tienes complementos para desequipar");
+                                else System.out.println("Complemeto desequipado correctamente");
+                            }
+                        }
+                    }
+                }
+            }
+            case 3 -> System.out.println("Adios");
+            default -> System.out.println("Introduce una opción valida.");
+        }
     }
 }

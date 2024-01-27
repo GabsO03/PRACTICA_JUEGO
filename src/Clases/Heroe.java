@@ -100,13 +100,10 @@ public class Heroe {
         return velocidad + complemento.getVelocidad();
     }
     public void equiparComplemento (Complemento complemento) {
-        if (complemento != null ) System.out.println("Ya no puedes equipar más complementos");
-        else {
-            this.complemento = complemento;
-            ataque = devuelveAtaqueTotal();
-            defensa = devuelveDefensaTotal();
-            velocidad = devuelveVelocidadTotal();
-        }
+        this.complemento = complemento;
+        ataque = devuelveAtaqueTotal();
+        defensa = devuelveDefensaTotal();
+        velocidad = devuelveVelocidadTotal();
     }
     public boolean desequiparComplemento () {
         if (complemento != null ) {
@@ -129,4 +126,8 @@ public class Heroe {
         this.vida = devuelveVidaTotal();
     }
 
+    @Override
+    public String toString() {
+        return "Nombre:"+nombre+"\nAtaque:"+ataque+"\nVelocidad:"+velocidad+"\nDefensa:"+defensa+"\nVida:"+vida+"\nApariencia:"+apariencia+"\nComplemento:"+complemento.getNombre()+"\n";
+    }
 }
