@@ -60,7 +60,6 @@ public class Heroe {
     public Complemento getComplemento() {
         return complemento;
     }
-
     //SETTERS
     public void setNombre(String nombre) {
         this.nombre = nombre;
