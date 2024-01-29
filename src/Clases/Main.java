@@ -182,21 +182,21 @@ public class Main {
     public static void main(String[] args) {
         // Array 5 heroes y 5 complementos
         Complemento complemento1, complemento2, complemento3, complemento4, complemento5;
-        complemento1 = new Complemento("Corazón Ártico", 30, 15, 22, 35);
-        complemento2 = new Complemento("Espada de fuego", 25, 9, 22, 12);
-        complemento3 = new Complemento("Feníx", 30, 15, 30, 19);
-        complemento4 = new Complemento("Vacío existencial", 33, 9, 22, 2);
-        complemento5 = new Complemento("Diarrea", 33, 9, 22, 23);
+        complemento1 = new Complemento("🧊 Corazón Ártico 🧊", 30, 15, 22, 35);
+        complemento2 = new Complemento("🎇 Espada de fuego 🎇", 25, 9, 22, 12);
+        complemento3 = new Complemento("🦅 Feníx 🦅", 30, 15, 30, 19);
+        complemento4 = new Complemento("🌌 Vacío existencial 🌌", 33, 9, 22, 2);
+        complemento5 = new Complemento("💩 Diarrea 💩", 33, 9, 22, 23);
         Complemento[] complementos = {complemento1, complemento2, complemento3, complemento4, complemento5};
 
 
         //Heroe[] heroes = new Heroe[5];
         Heroe heroe1, heroe2, heroe3, heroe4, heroe5;
         heroe1 = new Heroe("⚔ Destructor ⚔", 50, 20, 30, "...");
-        heroe2 = new Heroe("Cazador", 45, 9, 30, "...");
-        heroe3 = new Heroe("Espía", 33, 50, 25, "...", complemento1);
-        heroe4 = new Heroe("Manipulador", 40, 9, 35, "...");
-        heroe5 = new Heroe("Pacífico", 30, 40, 50, "...");
+        heroe2 = new Heroe("🐱‍👤 Cazador 🐱‍👤", 45, 9, 30, "...");
+        heroe3 = new Heroe("🕵️‍♂️ Espía 🕵️‍", 33, 50, 25, "...", complemento1);
+        heroe4 = new Heroe("🧙‍♂️ Mago 🧙‍♂️", 40, 9, 35, "...");
+        heroe5 = new Heroe("👼 Pacífico 👼", 30, 40, 50, "...");
         Heroe[] heroes = {heroe1, heroe2, heroe3, heroe4, heroe5};
 
         Heroe player1 = null, player2 = null;
