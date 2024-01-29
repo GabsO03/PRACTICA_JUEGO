@@ -103,78 +103,33 @@ public class Main {
             }
         }
     }
-    public static boolean sigueJugando (Heroe ataca, Heroe recibe) {
-        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
-        int opcion, complemento;
-        System.out.println("Turno de " + ataca.getNombre());
-        do {
-            System.out.println("Menú de batalla:\n1.Atacar\n2.Ver mi estado\n3.Usar complementos\n4. Rendirse");
-            opcion = numReader();
-            switch (opcion) {
-                case 1 -> ataca.atacaA(recibe, frasesAtaque);
-                case 2 -> System.out.println(ataca);
-                case 3 -> {
-                    if (ataca.getComplemento() != null) {
-                        System.out.println("Elige sabiamente.\n1. Ataque\n2. Defensa\n3. Velocidad\n4. Recuperar vida\n5. Cancelar");
-                        complemento = numReader();
-                        switch (complemento) {
-                            case 1 -> ataca.usarComplementoAtaque();
-                            case 2 -> ataca.usarComplementoDefensa();
-                            case 3 -> ataca.usarComplementoVelocidad();
-                            case 4 -> ataca.recuperarVida();
-                            case 5 -> System.out.println("a");
-                            default -> System.out.println("What?");
-                        }
-                    }
-                    else System.out.println("Debiste equipar complemento antes de la batalla");
-                }
-                case 4 -> {
-                    System.out.println("Me rindo. Gana: " + recibe.getNombre());
-                    return false;
-                }
-                default -> System.out.println("What?");
-            }
-        } while (opcion != 1 && opcion != 4);
-        return true;
-    }
 
     public static void cuentaRegresiva () {
         System.out.println("3 . . .");
-        for (int i = 0; i < 100000; i++) {}
         System.out.println("2 . . .");
-        for (int i = 0; i < 100000; i++) {}
         System.out.println("1 . . .");
-        for (int i = 0; i < 100000; i++) {}
     }
 
     public static void main(String[] args) {
-        // Array 5 heroes y 5 complementos
         Complemento complemento1, complemento2, complemento3, complemento4, complemento5;
-        complemento1 = new Complemento("🧊 Corazón Ártico 🧊", 30, 15, 22, 35);
-        complemento2 = new Complemento("🎇 Espada de fuego 🎇", 35, 9, 22, 12);
-        complemento3 = new Complemento("🦅 Feníx 🦅", 0, 15, 20, 19);
-        complemento4 = new Complemento("🌌 Vacío existencial 🌌", 33, 9, 22, 2);
-        complemento5 = new Complemento("💩 Diarrea 💩", 33, 9, 22, 23);
+        complemento1 = new Complemento("🧊 Corazón Ártico 🧊", 30, 15, 25, 35);
+        complemento2 = new Complemento("🎇 Espada de fuego 🎇", 35, 20, 20, 30);
+        complemento3 = new Complemento("🦅 Feníx 🦅", 30, 25, 20, 40);
+        complemento4 = new Complemento("🌌 Vacío existencial 🌌", 25, 15, 25, 50);
+        complemento5 = new Complemento("💩 Diarrea 💩", 35, 15, 25, 25);
         Complemento[] complementos = {complemento1, complemento2, complemento3, complemento4, complemento5};
 
-
-        //Heroe[] heroes = new Heroe[5];
         Heroe heroe1, heroe2, heroe3, heroe4, heroe5;
-        heroe1 = new Heroe("Destructor", 50, 20, 30, "...");
-        heroe2 = new Heroe("👤 Cazador ‍👤", 45, 9, 30, "...");
-        heroe3 = new Heroe("🕵️‍♂️ Espía 🕵️‍", 45, 50, 25, "...", complemento1);
-        heroe4 = new Heroe("🧙‍♂️ Mago 🧙‍♂️", 40, 9, 15, "...");
-        heroe5 = new Heroe("👼 Pacífico 👼", 30, 40, 30, "...");
+        heroe1 = new Heroe("Destructor", 50, 15, 30, "Fornido, armadura de hierro");
+        heroe2 = new Heroe("👤 Cazador ‍👤", 45, 25, 25, "Ágil, vestimenta de cuero");
+        heroe3 = new Heroe("🕵️‍♂️ Espía 🕵️‍", 45, 40, 25, "Impredecible, vestimenta de ciudadano promedio");
+        heroe4 = new Heroe("🧙‍♂️ Mago 🧙‍♂️", 40, 35, 15, "Lleva gafas y una extraña cicatriz que le dejó un señor pelón");
+        heroe5 = new Heroe("👼 Pacífico 👼", 35, 35, 30, "Siempre lleva la ropa sucia de trabajar, tiene una navaja escondida");
         Heroe[] heroes = {heroe1, heroe2, heroe3, heroe4, heroe5};
-
-        Batalla batalla1;
-
-
-
+        Batalla batalla1 = null;
 
         Heroe player1 = null, player2 = null;
         int inicio, opcion;
-        boolean sigueVivo1 = true, sigueVivo2 = true, sigueJugando1 = true, sigueJugando2 = true;
 
         //1.
         do {
@@ -185,7 +140,8 @@ public class Main {
                 switch (inicio) {
                     case 1 -> {
                         player1 = elegirPersonajeInicio(heroes);
-                        player2 = heroeEscogido((int)(Math.random()*heroes.length),heroes);
+                        player2 = batalla1.generaHeroeComputer(heroes);
+                        player2.setComplemento(batalla1.generaComplementoComp(complementos));
                         System.out.println("Te tocó pelear contra " + player2.getNombre());
                     }
                     case 2 -> {
