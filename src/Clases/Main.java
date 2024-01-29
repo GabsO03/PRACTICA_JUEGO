@@ -209,7 +209,7 @@ public class Main {
                     case 1 -> {
                         player1 = elegirPersonajeInicio(heroes);
                         player2 = heroeEscogido((int)(Math.random()*heroes.length),heroes);
-                        System.out.println("Te tocó jugar con " + player2.getNombre());
+                        System.out.println("Te tocó pelear contra " + player2.getNombre());
                     }
                     case 2 -> {
                         player1 = elegirPersonajeInicio(heroes);
