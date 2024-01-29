@@ -44,7 +44,6 @@ public class Main {
                         System.out.println("Introduzca una opción valida.");
                 } while (eleccionPersonaje < 0 || eleccionPersonaje > heroes.length);
                 player = new Heroe(heroeEscogido(eleccionPersonaje, heroes));
-                System.out.println("Excelente elección, ¿Estás listos para la batalla? o ¿Deseas hacer algo antes?");
             }
             case 2 -> {
                 eleccionPersonaje = (int) (Math.random() * 5);
@@ -105,7 +104,7 @@ public class Main {
         }
     }
     public static boolean sigueJugando (Heroe ataca, Heroe recibe) {
-        String[] frasesAtaque = {"Toma jamón", "Y eso no es todo", "Ahí viene", "Por comerte mi chococrispis", "Nunca me vencerás", "Soy invencible", "Prepárate para lo que viene", "Aquí viene tu merecido", "Soy indestructible"};
+        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
         int opcion, complemento;
         System.out.println("Turno de " + ataca.getNombre());
         do {
@@ -140,7 +139,7 @@ public class Main {
     }
 
     public static boolean juegaCPU (Heroe cpu, Heroe recibe) {
-        String[] frasesAtaque = {"Toma jamón", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis", "Nunca me vencerás", "Soy invencible", "Prepárate para lo que viene", "Aquí viene tu merecido", "Soy indestructible"};
+        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
         int opcion, complemento;
         System.out.println("Turno de " + cpu.getNombre());
         do {
@@ -173,18 +172,13 @@ public class Main {
         System.out.println("1 . . .");
         for (int i = 0; i < 100000; i++) {}
     }
-    public static void instrucciones () {
-        System.out.println("Solo un ataque por turno.");
-        System.out.println("");
-    }
-
 
     public static void main(String[] args) {
         // Array 5 heroes y 5 complementos
         Complemento complemento1, complemento2, complemento3, complemento4, complemento5;
         complemento1 = new Complemento("🧊 Corazón Ártico 🧊", 30, 15, 22, 35);
-        complemento2 = new Complemento("🎇 Espada de fuego 🎇", 25, 9, 22, 12);
-        complemento3 = new Complemento("🦅 Feníx 🦅", 30, 15, 30, 19);
+        complemento2 = new Complemento("🎇 Espada de fuego 🎇", 35, 9, 22, 12);
+        complemento3 = new Complemento("🦅 Feníx 🦅", 0, 15, 20, 19);
         complemento4 = new Complemento("🌌 Vacío existencial 🌌", 33, 9, 22, 2);
         complemento5 = new Complemento("💩 Diarrea 💩", 33, 9, 22, 23);
         Complemento[] complementos = {complemento1, complemento2, complemento3, complemento4, complemento5};
@@ -192,15 +186,19 @@ public class Main {
 
         //Heroe[] heroes = new Heroe[5];
         Heroe heroe1, heroe2, heroe3, heroe4, heroe5;
-        heroe1 = new Heroe("⚔ Destructor ⚔", 50, 20, 30, "...");
-        heroe2 = new Heroe("🐱‍👤 Cazador 🐱‍👤", 45, 9, 30, "...");
-        heroe3 = new Heroe("🕵️‍♂️ Espía 🕵️‍", 33, 50, 25, "...", complemento1);
-        heroe4 = new Heroe("🧙‍♂️ Mago 🧙‍♂️", 40, 9, 35, "...");
-        heroe5 = new Heroe("👼 Pacífico 👼", 30, 40, 50, "...");
+        heroe1 = new Heroe("Destructor", 50, 20, 30, "...");
+        heroe2 = new Heroe("👤 Cazador ‍👤", 45, 9, 30, "...");
+        heroe3 = new Heroe("🕵️‍♂️ Espía 🕵️‍", 45, 50, 25, "...", complemento1);
+        heroe4 = new Heroe("🧙‍♂️ Mago 🧙‍♂️", 40, 9, 15, "...");
+        heroe5 = new Heroe("👼 Pacífico 👼", 30, 40, 30, "...");
         Heroe[] heroes = {heroe1, heroe2, heroe3, heroe4, heroe5};
+
+
 
         Heroe player1 = null, player2 = null;
         int inicio, opcion;
+        boolean sigueVivo1 = true, sigueVivo2 = true, sigueJugando1 = true, sigueJugando2 = true;
+
         //1.
         do {
             System.out.println("Bienvenido, escoja una opción:");
@@ -224,6 +222,7 @@ public class Main {
 
             //2.
             if (inicio<3){
+                System.out.println("Excelente elección, ¿Estás listos para la batalla? o ¿Deseas hacer algo antes?");
                 do {
                     do {
                         System.out.println("1. Iniciar una batalla\n2. Modificar personaje\n3. Ver mi personaje\n4. Salir");
@@ -237,7 +236,6 @@ public class Main {
                         // También falta controlar que al atacar solo le reste vida...
                         case 1 -> {
                             cuentaRegresiva();
-                            boolean sigueVivo1, sigueVivo2, sigueJugando1 = true, sigueJugando2 = true;
                             do {
                                 if (player1.getVelocidad() > player2.getVelocidad()) {
                                     sigueJugando1 = sigueJugando(player1, player2);
@@ -254,7 +252,7 @@ public class Main {
                                 sigueVivo1 = player2.estaVivo();
                                 sigueVivo2 = player1.estaVivo();
                             } while (sigueVivo1 && sigueVivo2 && sigueJugando1 && sigueJugando2);
-                            //Poner estado del ganador y cantidad de turnos
+                            //Poner estado del ganador y cantidad de turnos.
                         }
                         case 2 -> {
                             if (inicio == 2) {
@@ -279,7 +277,7 @@ public class Main {
                         case 4 -> System.out.println("Saliendo.");
                         default -> System.out.println("Error, opción no disponible.");
                     }
-                } while (opcion != 4);
+                } while (opcion != 4 && sigueVivo1 && sigueVivo2 && sigueJugando1 && sigueJugando2);
             }
         } while (inicio != 3);
     }
