@@ -140,7 +140,7 @@ public class Main {
     }
 
     public static boolean juegaCPU (Heroe cpu, Heroe recibe) {
-        String[] frasesAtaque = {"Toma jamón niño", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis", "Nunca me vencerás", "Soy invencible", "Prepárate para lo que viene", "Aquí viene tu merecido", "Soy indestructible"};
+        String[] frasesAtaque = {"Toma jamón", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis", "Nunca me vencerás", "Soy invencible", "Prepárate para lo que viene", "Aquí viene tu merecido", "Soy indestructible"};
         int opcion, complemento;
         System.out.println("Turno de " + cpu.getNombre());
         do {
