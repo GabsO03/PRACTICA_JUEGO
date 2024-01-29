@@ -88,13 +88,60 @@ public class Main {
                         } else System.out.println("No puedes equipar más complementos");
                     }
                     case 2 -> {
-                        boolean tiene = player.desequiparComplemento();
-                        if (!tiene) System.out.println("No tienes complementos para desequipar");
+                        boolean tenia = player.desequiparComplemento();
+                        if (!tenia) System.out.println("No tienes complementos para desequipar");
                         else System.out.println("Complemeto desequipado correctamente");
                     }
                 }
             }
         }
+    }
+    public static boolean sigueJugando (Heroe ataca, Heroe recibe) {
+        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
+        int opcion, complemento;
+        System.out.println("Turno de " + ataca.getNombre());
+        do {
+            System.out.println("Menú de batalla:\n1.Atacar\n2.Ver mi estado\n3.Usar complementos\n4. Rendirse");
+            opcion = numReader();
+            switch (opcion) {
+                case 1 -> ataca.atacaA(recibe, frasesAtaque);
+                case 2 -> System.out.println(ataca);
+                case 3 -> {
+                    if (ataca.getComplemento() != null) {
+                        System.out.println("Elige sabiamente.\n1. Ataque\n2. Defensa\n3. Velocidad\n4. Recuperar vida\n5. Cancelar");
+                        complemento = numReader();
+                        switch (complemento) {
+                            case 1 -> ataca.usarComplementoAtaque();
+                            case 2 -> ataca.usarComplementoDefensa();
+                            case 3 -> ataca.usarComplementoVelocidad();
+                            case 4 -> ataca.recuperarVida();
+                            case 5 -> {
+                                System.out.println("a");
+                                return false;
+                            }
+                            default -> System.out.println("What?");
+                        }
+                    }
+                    else System.out.println("Debiste equipar complemento antes de la batalla");
+                }
+                case 4 -> System.out.println("Me rindo. Gana: " + recibe.getNombre());
+                default -> System.out.println("What?");
+            }
+        } while (opcion<1 || opcion>4);
+        return true;
+    }
+
+    public static void cuentaRegresiva () {
+        System.out.println("3 . . .");
+        for (int i = 0; i < 100000; i++) {}
+        System.out.println("2 . . .");
+        for (int i = 0; i < 100000; i++) {}
+        System.out.println("1 . . .");
+        for (int i = 0; i < 100000; i++) {}
+    }
+    public static void instrucciones () {
+        System.out.println("Solo un ataque por turno.");
+        System.out.println("");
     }
 
 
@@ -117,13 +164,6 @@ public class Main {
         complemento4 = new Complemento("Vacío existencial", 33, 9, 22, 2);
         complemento5 = new Complemento("Diarrea", 33, 9, 22, 23);
         Complemento[] complementos = {complemento1, complemento2, complemento3, complemento4, complemento5};
-        //1. Primero empieza registrando al jugador (Se recoge los datos y los introduces en el constructor)
-        //2. Luego le da las opciones, de modificar su personaje, equipar un complemento e iniciar una batalla
-        //3. Para la batalla, que inicie presentando al presonaje del jugador y luego al personaje del PC que le tocó (aleatorio)
-        //4. Va ir por turnos, se escoge el primer ataque al azar, usar usa función.
-        //5. Al inicio de cada turno saldrán opciones: Acción, Ver estado de mi personaje, terminar partida (Si escoge esto, ponemos de ganador al contrincante y decimos quien es ganador)
-        //6. De caso contrario, se sigue usando el mismo metodo que vea que siga teniendo vida.
-
 
         Heroe player1 = null, player2 = null;
         int inicio, eleccionPersonaje, opcion;
@@ -142,6 +182,7 @@ public class Main {
                                 System.out.println("Error, opción no disponible.");
                         } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
                         player1 = elegirPersonajeInicio(eleccionPersonaje, heroes);
+                        player2 = heroeEscogido((int)(Math.random()*heroes.length),heroes);
                     }
                     case 2 -> {
                         System.out.println("Escoge el jugador 1:");
@@ -177,9 +218,17 @@ public class Main {
                     } while (opcion < 1 || opcion > 4);
 
                     switch (opcion) {
+                        //3. Inicia batalla
                         case 1 -> {
-                            System.out.println("Aún no está disponible x'd");
-                        } //3. Inicia batalla
+                            cuentaRegresiva();
+                            boolean sigueVivo1, sigueVivo2, sigueJugando1 = true, sigueJugando2 = true;
+                            do {
+                                if (player1.getVelocidad() > player2.getVelocidad()) sigueJugando1 = sigueJugando(player1, player2);
+                                else if (player2.getVelocidad() > player1.getVelocidad()) sigueJugando2 = sigueJugando(player2, player1);
+                                sigueVivo1 = player2.estaVivo();
+                                sigueVivo2 = player1.estaVivo();
+                            } while (sigueVivo1 && sigueVivo2 && sigueJugando1 && sigueJugando2);
+                        }
                         case 2 -> {
                             if (inicio == 2) {
                                 System.out.println(player1.getNombre() + "(1) o " + player2.getNombre() + "(2)");

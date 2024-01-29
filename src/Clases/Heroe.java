@@ -107,6 +107,7 @@ public class Heroe {
             ataque -= complemento.getAtaque();
             defensa -= complemento.getDefensa();
             velocidad -= complemento.getVelocidad();
+            complemento = null;
             return true;
         }
         return false;
@@ -116,11 +117,16 @@ public class Heroe {
     }
 
     //ACCIONES
-    public void atacaA (Heroe recibe) {
+    public void atacaA (Heroe recibe, String[] frasesAtaque) {
+        System.out.println("Jugador " + nombre + ":" + frasesAtaque[(int)(Math.random()* frasesAtaque.length)]);
         recibe.restaVida(ataque);
     }
     public void recuperarVida () {
         this.vida = devuelveVidaTotal();
+        if (vida > 100) {
+            complemento.setVida(vida-100);
+            vida = 100;
+        }
     }
     public void usarComplementoAtaque () {
         ataque = devuelveAtaqueTotal();
@@ -131,11 +137,7 @@ public class Heroe {
     public void usarComplementoVelocidad () {
         velocidad = devuelveVelocidadTotal();
     }
-    public void accionTurno () {
-        System.out.println("1. Atacar\n2. Ver mi estado\n3. Combo");
-        int opcion = 1; //Aquí va el scanner
 
-    }
 
     @Override
     public String toString() {
