@@ -138,32 +138,6 @@ public class Main {
         return true;
     }
 
-    public static boolean juegaCPU (Heroe cpu, Heroe recibe) {
-        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
-        int opcion, complemento;
-        System.out.println("Turno de " + cpu.getNombre());
-        do {
-            opcion = (int) (Math.random()*2+1);
-            switch (opcion) {
-                case 1 -> cpu.atacaA(recibe, frasesAtaque);
-                case 2 -> {
-                    if (cpu.getComplemento() != null) {
-                        complemento = (int) (Math.random()*4+1);
-                        switch (complemento) {
-                            case 1 -> cpu.usarComplementoAtaque();
-                            case 2 -> cpu.usarComplementoDefensa();
-                            case 3 -> cpu.usarComplementoVelocidad();
-                            case 4 -> cpu.recuperarVida();
-                        }
-                    }
-                }
-            }
-            if (cpu.getVida()<=50) cpu.recuperarVida();
-            if (cpu.getVida()<=10) return false;
-        } while (opcion!=1 && opcion!=4);
-        return true;
-    }
-
     public static void cuentaRegresiva () {
         System.out.println("3 . . .");
         for (int i = 0; i < 100000; i++) {}
@@ -192,6 +166,9 @@ public class Main {
         heroe4 = new Heroe("🧙‍♂️ Mago 🧙‍♂️", 40, 9, 15, "...");
         heroe5 = new Heroe("👼 Pacífico 👼", 30, 40, 30, "...");
         Heroe[] heroes = {heroe1, heroe2, heroe3, heroe4, heroe5};
+
+        Batalla batalla1;
+
 
 
 
@@ -231,28 +208,15 @@ public class Main {
                     } while (opcion < 1 || opcion > 4);
 
                     switch (opcion) {
-                        //3. Inicia batalla
-                        // También falta contador de turnos.
-                        // También falta controlar que al atacar solo le reste vida...
+
                         case 1 -> {
+                            System.out.println("Introduce la fecha:");
+                            String fecha = reader();
+                            System.out.println("Introduce la cantidad de turnos:");
+                            int turnos= numReader();
+                            batalla1 = new Batalla(player1, player2, fecha, turnos);
                             cuentaRegresiva();
-                            do {
-                                if (player1.getVelocidad() > player2.getVelocidad()) {
-                                    sigueJugando1 = sigueJugando(player1, player2);
-                                    if (inicio == 2) sigueJugando2 = sigueJugando(player2, player1);
-                                    else juegaCPU(player2, player1);
-                                    //Falta agregar función de generar turno aleatorio
-                                }
-                                else if (player2.getVelocidad() > player1.getVelocidad())  {
-                                    if (inicio == 2) sigueJugando2 = sigueJugando(player2, player1);
-                                    else juegaCPU(player2, player1);
-                                    sigueJugando1 = sigueJugando(player1, player2);
-                                    //Falta agregar función de generar turno aleatorio
-                                }
-                                sigueVivo1 = player2.estaVivo();
-                                sigueVivo2 = player1.estaVivo();
-                            } while (sigueVivo1 && sigueVivo2 && sigueJugando1 && sigueJugando2);
-                            //Poner estado del ganador y cantidad de turnos.
+                            batalla1.turno(player1, player2,inicio,batalla1);
                         }
                         case 2 -> {
                             if (inicio == 2) {
@@ -277,7 +241,7 @@ public class Main {
                         case 4 -> System.out.println("Saliendo.");
                         default -> System.out.println("Error, opción no disponible.");
                     }
-                } while (opcion != 4 && sigueVivo1 && sigueVivo2 && sigueJugando1 && sigueJugando2);
+                } while (opcion != 4);
             }
         } while (inicio != 3);
     }
