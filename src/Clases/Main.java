@@ -191,14 +191,12 @@ public class Main {
 
         //Heroe[] heroes = new Heroe[5];
         Heroe heroe1, heroe2, heroe3, heroe4, heroe5;
-        heroe1 = new Heroe("Destructor", 50, 20, 30, "...");
+        heroe1 = new Heroe("⚔ Destructor ⚔", 50, 20, 30, "...");
         heroe2 = new Heroe("Cazador", 45, 9, 30, "...");
         heroe3 = new Heroe("Espía", 33, 50, 25, "...", complemento1);
         heroe4 = new Heroe("Manipulador", 40, 9, 35, "...");
         heroe5 = new Heroe("Pacífico", 30, 40, 50, "...");
         Heroe[] heroes = {heroe1, heroe2, heroe3, heroe4, heroe5};
-
-
 
         Heroe player1 = null, player2 = null;
         int inicio, opcion;
@@ -256,7 +254,7 @@ public class Main {
                                 sigueVivo1 = player2.estaVivo();
                                 sigueVivo2 = player1.estaVivo();
                             } while (sigueVivo1 && sigueVivo2 && sigueJugando1 && sigueJugando2);
-                            //Poner estado del ganador y cantidad de turnos.
+                            //Poner estado del ganador y cantidad de turnos
                         }
                         case 2 -> {
                             if (inicio == 2) {
