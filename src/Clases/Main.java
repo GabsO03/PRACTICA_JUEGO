@@ -33,9 +33,9 @@ public class Main {
                 mostrarHeroes(heroes);
                 do {
                     eleccionPersonaje = numReader();
-                    if (eleccionPersonaje < 1 || eleccionPersonaje > heroes.length)
+                    if (eleccionPersonaje < 0 || eleccionPersonaje > heroes.length)
                         System.out.println("Introduzca una opción valida.");
-                } while (eleccionPersonaje < 1 || eleccionPersonaje > heroes.length);
+                } while (eleccionPersonaje < 0 || eleccionPersonaje > heroes.length);
                 player = new Heroe(heroeEscogido(eleccionPersonaje, heroes));
             }
             case 2 -> {
@@ -97,25 +97,26 @@ public class Main {
         }
     }
 
+
     public static void main(String[] args) {
         // Array 5 heroes y 5 complementos
         //Heroe[] heroes = new Heroe[5];
         Heroe heroe1, heroe2, heroe3, heroe4, heroe5;
-        heroe1 = new Heroe("Destructor", 33, 9, 22, "...");
-        heroe2 = new Heroe("Destructor", 33, 9, 22, "...");
-        heroe3 = new Heroe("Destructor", 33, 9, 22, "...");
-        heroe4 = new Heroe("Destructor", 33, 9, 22, "...");
-        heroe5 = new Heroe("Destructor", 33, 9, 22, "...");
+        heroe1 = new Heroe("Destructor", 50, 20, 30, "...");
+        heroe2 = new Heroe("Cazador", 45, 9, 30, "...");
+        heroe3 = new Heroe("Espía", 33, 50, 25, "...");
+        heroe4 = new Heroe("Manipulador", 40, 9, 35, "...");
+        heroe5 = new Heroe("Pacífico", 30, 40, 50, "...");
         Heroe[] heroes = {heroe1, heroe2, heroe3, heroe4, heroe5};
 
-        Complemento[] complementos = new Complemento[5];
+        // complementos;
         Complemento complemento1, complemento2, complemento3, complemento4, complemento5;
-        complemento1 = new Complemento("Corazón Ártico", 14, 7, 22, 35);
-        complemento2 = new Complemento("Corazón Ártico", 33, 9, 22, 12);
-        complemento3 = new Complemento("Corazón Ártico", 33, 9, 22, 19);
-        complemento4 = new Complemento("Corazón Ártico", 33, 9, 22, 2);
-        complemento5 = new Complemento("Corazón Ártico", 33, 9, 22, 23);
-
+        complemento1 = new Complemento("Corazón Ártico", 30, 15, 22, 35);
+        complemento2 = new Complemento("Espada de fuego", 25, 9, 22, 12);
+        complemento3 = new Complemento("Feníx", 30, 15, 30, 19);
+        complemento4 = new Complemento("Vacío existencial", 33, 9, 22, 2);
+        complemento5 = new Complemento("Diarrea", 33, 9, 22, 23);
+        Complemento[] complementos = {complemento1, complemento2, complemento3, complemento4, complemento5};
         //1. Primero empieza registrando al jugador (Se recoge los datos y los introduces en el constructor)
         //2. Luego le da las opciones, de modificar su personaje, equipar un complemento e iniciar una batalla
         //3. Para la batalla, que inicie presentando al presonaje del jugador y luego al personaje del PC que le tocó (aleatorio)
@@ -127,74 +128,83 @@ public class Main {
         Heroe player1 = null, player2 = null;
         int inicio, eleccionPersonaje, opcion;
         //1.
-        System.out.println("Bienvenido, escoja una opción:");
-        System.out.println("Modo de juego:\n1. Player vs. PC\n2. Player vs. Player\n3. Salir");
         do {
-            inicio = numReader();
-            switch (inicio) {
-                case 1 -> {
-                    System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.");
-                    do {
-                        eleccionPersonaje = numReader();
-                        if (eleccionPersonaje < 1 || eleccionPersonaje > 3) System.out.println("Error, opción no disponible.");
-                    } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
-                    player1 = elegirPersonajeInicio(eleccionPersonaje, heroes);
+            System.out.println("Bienvenido, escoja una opción:");
+            System.out.println("Modo de juego:\n1. Player vs. PC\n2. Player vs. Player\n3. Salir");
+            do {
+                inicio = numReader();
+                switch (inicio) {
+                    case 1 -> {
+                        System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.");
+                        do {
+                            eleccionPersonaje = numReader();
+                            if (eleccionPersonaje < 1 || eleccionPersonaje > 3)
+                                System.out.println("Error, opción no disponible.");
+                        } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
+                        player1 = elegirPersonajeInicio(eleccionPersonaje, heroes);
+                    }
+                    case 2 -> {
+                        System.out.println("Escoge el jugador 1:");
+                        System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.");
+                        do {
+                            eleccionPersonaje = numReader();
+                            if (eleccionPersonaje < 1 || eleccionPersonaje > 3)
+                                System.out.println("Error, opción no disponible.");
+                        } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
+                        player1 = elegirPersonajeInicio(eleccionPersonaje, heroes);
+                        System.out.println("Escoge el jugador 2:");
+                        System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.");
+                        do {
+                            eleccionPersonaje = numReader();
+                            if (eleccionPersonaje < 1 || eleccionPersonaje > 3)
+                                System.out.println("Error, opción no disponible.");
+                        } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
+                        player2 = elegirPersonajeInicio(eleccionPersonaje, heroes);
+                    }
+                    case 3 -> System.out.println("Adios.");
+                    default -> System.out.println("Error, opción no disponible.");
                 }
-                case 2 -> {
-                    System.out.println("Escoge el jugador 1:");
-                    System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.");
-                    do {
-                        eleccionPersonaje = numReader();
-                        if (eleccionPersonaje < 1 || eleccionPersonaje > 3) System.out.println("Error, opción no disponible.");
-                    } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
-                    player1 = elegirPersonajeInicio(eleccionPersonaje, heroes);
-                    System.out.println("Escoge el jugador 2:");
-                    System.out.println("1. Escoger un personaje existente.\n2. Sorpréndeme.\n3. Crea un nuevo personaje.");
-                    do {
-                        eleccionPersonaje = numReader();
-                        if (eleccionPersonaje < 1 || eleccionPersonaje > 3) System.out.println("Error, opción no disponible.");
-                    } while (eleccionPersonaje < 1 || eleccionPersonaje > 3);
-                    player2 = elegirPersonajeInicio(eleccionPersonaje, heroes);
-                }
-            }
+            } while (inicio<1 || inicio>3);
 
             //2.
-            if (inicio == 2)System.out.println("Excelente elección, ¿Están listos para la batalla? o ¿Deseas hacer algo antes?\n1. Iniciar una batalla\n2. Modificar personajes\n3. Ver mi personajes\n4. Salir");
-            else System.out.println("Excelente elección, ¿Está listo para la batalla? o ¿Deseas hacer algo antes?\n1. Iniciar una batalla\n2. Modificar personaje\n3. Ver mi personaje\n4. Salir");
+            if (inicio<3){
+                System.out.println("Excelente elección, ¿Estás listos para la batalla? o ¿Deseas hacer algo antes?");
+                do {
+                    System.out.println("1. Iniciar una batalla\n2. Modificar personaje\n3. Ver mi personaje\n4. Salir");
+                    do {
+                        opcion = numReader();
+                        if (opcion < 1 || opcion > 4) System.out.println("Error, opción no disponible.");
+                    } while (opcion < 1 || opcion > 4);
 
-            do {
-                opcion = numReader();
-                if (opcion<1 || opcion>4) System.out.println("Error, opción no disponible.");
-            } while (opcion != 4);
-            switch (opcion) {
-                case 1 -> {
-                } //3. Inicia batalla
-                case 2 -> {
-                    if (inicio == 2) {
-                        System.out.println(player1 + "(1) o " + player2 + "(2)");
-                        opcion = numReader();
-                        switch (opcion) {
-                            case 1 -> modificarPersonaje(player1, complementos);
-                            case 2 -> modificarPersonaje(player2, complementos);
+                    switch (opcion) {
+                        case 1 -> {
+                            System.out.println("Aún no está disponible x'd");
+                        } //3. Inicia batalla
+                        case 2 -> {
+                            if (inicio == 2) {
+                                System.out.println(player1.getNombre() + "(1) o " + player2.getNombre() + "(2)");
+                                opcion = numReader();
+                                switch (opcion) {
+                                    case 1 -> modificarPersonaje(player1, complementos);
+                                    case 2 -> modificarPersonaje(player2, complementos);
+                                }
+                            } else modificarPersonaje(player1, complementos);
                         }
-                    }
-                    else modificarPersonaje(player1, complementos);
-                }
-                case 3 -> {
-                    if (inicio == 2){
-                        System.out.println(player1 + "(1) o " + player2 + "(2)");
-                        opcion = numReader();
-                        switch (opcion) {
-                            case 1 -> System.out.println(player1);
-                            case 2 -> System.out.println(player2);
+                        case 3 -> {
+                            if (inicio == 2) {
+                                System.out.println(player1.getNombre() + "(1) o " + player2.getNombre() + "(2)");
+                                opcion = numReader();
+                                switch (opcion) {
+                                    case 1 -> System.out.println(player1);
+                                    case 2 -> System.out.println(player2);
+                                }
+                            } else System.out.println(player1);
                         }
+                        case 4 -> System.out.println("Saliendo.");
+                        default -> System.out.println("Error, opción no disponible.");
                     }
-                    else System.out.println(player1);
-                }
-                case 4 -> System.out.println("Adios");
-                default -> System.out.println("Error, opción no disponible.");
+                } while (opcion != 4);
             }
-            if (inicio<1 || inicio>3) System.out.println("Error, opción no disponible.");
         } while (inicio != 3);
     }
 }

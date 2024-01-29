@@ -101,9 +101,6 @@ public class Heroe {
     }
     public void equiparComplemento (Complemento complemento) {
         this.complemento = complemento;
-        ataque = devuelveAtaqueTotal();
-        defensa = devuelveDefensaTotal();
-        velocidad = devuelveVelocidadTotal();
     }
     public boolean desequiparComplemento () {
         if (complemento != null ) {
@@ -124,6 +121,20 @@ public class Heroe {
     }
     public void recuperarVida () {
         this.vida = devuelveVidaTotal();
+    }
+    public void usarComplementoAtaque () {
+        ataque = devuelveAtaqueTotal();
+    }
+    public void usarComplementoDefensa () {
+        defensa = devuelveDefensaTotal();
+    }
+    public void usarComplementoVelocidad () {
+        velocidad = devuelveVelocidadTotal();
+    }
+    public void accionTurno () {
+        System.out.println("1. Atacar\n2. Ver mi estado\n3. Combo");
+        int opcion = 1; //Aquí va el scanner
+
     }
 
     @Override
