@@ -44,6 +44,7 @@ public class Main {
                         System.out.println("Introduzca una opción valida.");
                 } while (eleccionPersonaje < 0 || eleccionPersonaje > heroes.length);
                 player = new Heroe(heroeEscogido(eleccionPersonaje, heroes));
+                System.out.println("Excelente elección, ¿Estás listos para la batalla? o ¿Deseas hacer algo antes?");
             }
             case 2 -> {
                 eleccionPersonaje = (int) (Math.random() * 5);
@@ -104,7 +105,7 @@ public class Main {
         }
     }
     public static boolean sigueJugando (Heroe ataca, Heroe recibe) {
-        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
+        String[] frasesAtaque = {"Toma jamón", "Y eso no es todo", "Ahí viene", "Por comerte mi chococrispis", "Nunca me vencerás", "Soy invencible", "Prepárate para lo que viene", "Aquí viene tu merecido", "Soy indestructible"};
         int opcion, complemento;
         System.out.println("Turno de " + ataca.getNombre());
         do {
@@ -139,7 +140,7 @@ public class Main {
     }
 
     public static boolean juegaCPU (Heroe cpu, Heroe recibe) {
-        String[] frasesAtaque = {"Toma mango", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis"};
+        String[] frasesAtaque = {"Toma jamón niño", "Y eso no es todo", "Pim pam pum", "Por comerte mi chococrispis", "Nunca me vencerás", "Soy invencible", "Prepárate para lo que viene", "Aquí viene tu merecido", "Soy indestructible"};
         int opcion, complemento;
         System.out.println("Turno de " + cpu.getNombre());
         do {
@@ -223,7 +224,6 @@ public class Main {
 
             //2.
             if (inicio<3){
-                System.out.println("Excelente elección, ¿Estás listos para la batalla? o ¿Deseas hacer algo antes?");
                 do {
                     do {
                         System.out.println("1. Iniciar una batalla\n2. Modificar personaje\n3. Ver mi personaje\n4. Salir");
